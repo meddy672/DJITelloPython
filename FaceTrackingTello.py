@@ -2,7 +2,7 @@ from utils import *
 import cv2
 
 drone = initialize_tello()
-w, h = 1280, 720
+w, h = 480, 360
 
 while True:
     ## Step 1 getting the image from drone camera 

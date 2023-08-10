@@ -21,8 +21,11 @@ def initialize_tello():
     return tello_drone
 
 
-def telloGetFrame(drone: Tello, w=360, h=240):
+def tello_get_frame(drone: Tello, w=360, h=240):
     """Specify frame of the image."""
     frame = drone.get_frame_read()
     img_frame = frame.frame
     return cv2.resize(img_frame, (w,h))
+
+
+
