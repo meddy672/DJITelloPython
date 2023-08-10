@@ -1,3 +1,3 @@
 # DJI Tello Facial Recognition
 
-# Connecting DJI Tello Drone
+## Connecting DJI Tello Drone
