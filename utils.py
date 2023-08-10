@@ -23,9 +23,27 @@ def initialize_tello():
 
 def tello_get_frame(drone: Tello, w=360, h=240):
     """Specify frame of the image."""
-    frame = drone.get_frame_read()
-    img_frame = frame.frame
-    return cv2.resize(img_frame, (w,h))
+    backround = drone.get_frame_read()
+    frame = backround.frame
+    return cv2.resize(frame, (w,h))
 
 
+def find_face(img):
+    """Find faces from drone."""
+    # Detect face using algorthim
+    faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
+    # Select gray image
+    img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+    # Find the faces
+    scale_factor = 1.2
+    min_neighbors = 4
+    faces = faceCascade.detectMultiScale(img_gray, scale_factor, min_neighbors)
+    # print(faces)
+
+    # drwa faces recieved from drone
+    for (x, y, w, h) in faces:
+        cv2.rectangle(img, (x,y), (x+w, y+h), (0,0,255), 2)
+
+    return img
